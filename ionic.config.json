@@ -1,0 +1,7 @@
+{
+  "name": "yoka",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

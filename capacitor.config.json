@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "yoka",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
