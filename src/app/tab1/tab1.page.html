@@ -1,15 +1,68 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Yoka
+      Yoka <span *ngIf="product">-- {{ product.product_name }}</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <lottie-animation-view
+        [width]="75"
+        [height]="150"
+        (animCreated)="handleAnimation($event)"
+        [options]="interactiveAnimationOption">
+      </lottie-animation-view>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngIf="product">
+    <ion-card-header>
+      <ion-card-title>
+        {{ product.product_name }}
+      </ion-card-title>
+      <ion-card-title>
+        {{ product.generic_name }}
+      </ion-card-title>
+        <ion-thumbnail>
+          <img src="{{ product.image_url }}">
+        </ion-thumbnail>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ngx-gauge
+                [type]="'arch'"
+                [size]="75"
+                [value]="getGaugeInfo('nutrition').value"
+                [label]="getGaugeInfo('nutrition').label"
+                [append]="getGaugeInfo('nutrition').appendText"
+              ></ngx-gauge>
+            </ion-col>
+            <ion-col>
+              <ngx-gauge
+              [type]="'arch'"
+              [size]="75"
+              [value]="getGaugeInfo('nova').value"
+              [label]="getGaugeInfo('nova').label"
+              [append]="getGaugeInfo('nova').appendText"
+            ></ngx-gauge>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
   <!-- fab placed to the bottom start -->
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="scanAction()">
       <ion-icon name="barcode"></ion-icon>
     </ion-fab-button>
   </ion-fab>
