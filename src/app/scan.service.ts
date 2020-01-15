@@ -18,11 +18,8 @@ export class ScanService {
   ) { }
 
   public scan(): Promise<Product> {
-    console.log('Hello barcode scanner');
     return new Promise<Product>((resolve) => {
       this.barcodeScanner.scan().then((barcodeResult: BarcodeScanResult) => {
-        // My stuff here...
-        console.log(`Barcode says ${barcodeResult.text}`);
         this.httpClient.get<ProductInterface>(
           `${this.api}${barcodeResult.text}.json`
         ).pipe(
@@ -31,7 +28,6 @@ export class ScanService {
           resolve(new Product().deserialize(result));
         });
       });      
-    })
-
+    });
   }
 }
